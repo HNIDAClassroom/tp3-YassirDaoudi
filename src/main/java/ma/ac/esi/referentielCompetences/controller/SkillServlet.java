@@ -27,7 +27,7 @@ public class SkillServlet extends HttpServlet {
                                 domain,
                                 level);
         SkillDAO.addSkill(skill);
-        response.sendRedirect("addSkill.html");
+        response.sendRedirect("SkillAdded.html");
 
     }
 }

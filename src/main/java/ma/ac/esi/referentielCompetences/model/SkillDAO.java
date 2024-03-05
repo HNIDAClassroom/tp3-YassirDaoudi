@@ -4,10 +4,7 @@ import java.sql.*;
 import java.util.ArrayList;
 
 public class SkillDAO {
-    public static void main(String[] args){
-        Skill skill = new Skill("skill","description","domain","Avancé");
-        System.out.println(getSkills());
-    }
+
     public static void addSkill(Skill skill){
         ConnectBd cnd = new ConnectBd();
         cnd.initCon();

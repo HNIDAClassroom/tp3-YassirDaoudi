@@ -1,6 +1,6 @@
 package ma.ac.esi.referentielCompetences.model;
 import java.sql.*;
-import com.mysql.cj.jdbc.Driver;
+
 
 public class ConnectBd {
 	private String url ="jdbc:mysql://localhost:3306/comp" ;
@@ -16,14 +16,12 @@ public class ConnectBd {
 		this.password = password;
 	}
 	public void initCon() {
-		if (this.con == null) {
-			try {
-				Class.forName("com.mysql.cj.jdbc.Driver");
-				this.con = DriverManager.getConnection(url,username,password);
-			}catch(Exception e) {
-				e.printStackTrace();
-			}
-		}
+		if (this.con == null) try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            this.con = DriverManager.getConnection(url, username, password);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 	}
 	
 	public Connection getConnection() {
