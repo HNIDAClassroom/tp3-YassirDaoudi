@@ -16,11 +16,13 @@ public class ConnectBd {
 		this.password = password;
 	}
 	public void initCon() {
-		try {
-			Class.forName("com.mysql.cj.jdbc.Driver");
-            this.con = DriverManager.getConnection(url,username,password);
-		}catch(Exception e) {
-			e.printStackTrace();
+		if (this.con == null) {
+			try {
+				Class.forName("com.mysql.cj.jdbc.Driver");
+				this.con = DriverManager.getConnection(url,username,password);
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
 		}
 	}
 	
