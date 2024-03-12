@@ -1,3 +1,5 @@
+<%@ page import="ma.ac.esi.referentielCompetences.model.Skill" %>
+<%@ page import="ma.ac.esi.referentielCompetences.model.SkillDAO" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -58,23 +60,46 @@
         </div>
         <button type="submit" class="btn btn-primary">Ajouter</button>
     </form>
+    <div class="mt-5">
+        <h3>Liste des compétences</h3>
+        <table class="table">
+            <thead class="thead-light">
+            <tr>
+                <th>Nom</th>
+                <th>Description</th>
+                <th>Domaine</th>
+                <th>Niveau</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody id="skillsTableBody">
+            <%
+                for (Skill i : SkillDAO.getSkills()) {
+
+
+                    String s ="<tr>"
+                    +"<td>"+i.getName()+"</td>"
+                    +"<td>"+i.getDescription()+"</td>"
+                    +"<td>"+i.getDomain()+"</td>"
+                    +"<td>"+i.getLevel()+"</td>"
+                    +"<td>"
+                    +"<div class=\"d-flex\">"
+                    +"<a style=\" margin-right: 10px;\" href=\"votre_lien_cible.html\" class=\"btn btn-primary btn-sm\" role=\"button\">"
+                    +"<i class=\"fas fa-edit\"></i> Éditer </a>"
+                    +"<a href=\"votre_lien_suppression.html\" class=\"btn btn-danger btn-sm\" role=\"button\">"
+                    +"<i class=\"fas"
+                    +"fa-trash-alt\"></i> Supprimer </a>"
+                    +"</div>"
+                    +"</td>"
+                    +"</tr>";
+
+
+            %>
+            <%= s %>
+            <%}%>
+
+            </tbody>
+        </table>
 </div>
-
-<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-<script>
-    $(document).ready(function() {
-
-        <% if (request.getAttribute("message") != null) { %>
-        // Affiche l'alerte
-        $('#successAlert').show();
-        // Masque l'alerte après 2 secondes (2000 millisecondes)
-        setTimeout(function() {
-            $('#successAlert').fadeOut('slow');
-        }, 2000); // 2 secondes
-        <% } %>
-    });
-</script>
 </body>
 </html>
