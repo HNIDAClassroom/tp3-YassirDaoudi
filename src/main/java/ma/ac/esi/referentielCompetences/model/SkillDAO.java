@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 public class SkillDAO {
 
-    public static void addSkill(Skill skill){
+    public static boolean addSkill(Skill skill){
         ConnectBd cnd = new ConnectBd();
         cnd.initCon();
         Connection con = cnd.getConnection();
@@ -17,12 +17,14 @@ public class SkillDAO {
             pstmt.setString(2,skill.getDescription());
             pstmt.setString(3,skill.getDomain());
             pstmt.setString(4,skill.getLevel());
-            pstmt.execute();
+            Integer rows_affected = pstmt.executeUpdate();
             con.close();
+            return rows_affected > 0;
 
 
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            e.printStackTrace();
+            return false;
         }
     }
     public static void removeSkill(Integer id){

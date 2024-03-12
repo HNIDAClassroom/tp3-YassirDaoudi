@@ -26,8 +26,14 @@ public class SkillServlet extends HttpServlet {
                                 description,
                                 domain,
                                 level);
-        SkillDAO.addSkill(skill);
-        response.sendRedirect("SkillAdded.html");
+        if(SkillDAO.addSkill(skill)){
+            request.setAttribute("message","the skill has been successfully added");
+        }else{
+            request.setAttribute("error","An error has occurred");
+
+        }
+        RequestDispatcher dispatcher = request.getRequestDispatcher("SkillCrud.jsp");
+        dispatcher.forward(request,response);
 
     }
 }
